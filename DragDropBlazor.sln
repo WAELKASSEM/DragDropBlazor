@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragDrop.Blazor", "DragDrop.Blazor\DragDrop.Blazor.csproj", "{F3DE6020-A866-4C64-AAA8-E05457CA9E90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragDrop.Blazor.Samples", "DragDrop.Blazor.Samples\DragDrop.Blazor.Samples.csproj", "{FA8FD7B7-D729-4463-85DA-D1CF77C9CFEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3DE6020-A866-4C64-AAA8-E05457CA9E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DE6020-A866-4C64-AAA8-E05457CA9E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DE6020-A866-4C64-AAA8-E05457CA9E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DE6020-A866-4C64-AAA8-E05457CA9E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA8FD7B7-D729-4463-85DA-D1CF77C9CFEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA8FD7B7-D729-4463-85DA-D1CF77C9CFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA8FD7B7-D729-4463-85DA-D1CF77C9CFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA8FD7B7-D729-4463-85DA-D1CF77C9CFEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9F8EBD3-41F3-4644-9377-8F6DE8B33D49}
+	EndGlobalSection
+EndGlobal

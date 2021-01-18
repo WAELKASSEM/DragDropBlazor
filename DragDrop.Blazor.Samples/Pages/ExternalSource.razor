@@ -1,0 +1,48 @@
+﻿@using DragDrop.Blazor
+@inject DragDropService DD
+@page "/ExternalSource"
+@page "/"
+<DragDropList TItem="Person"
+               Capacity="3"
+               OnItemAdded="(item) => Console.WriteLine(item.FirstName)"
+               OnCapacityReachedRejected="(item) => Console.WriteLine(item.LastName)"
+               DefaultDropMode="DefaultDrop.End"
+               Items="people"
+               Verify="(item) => { return !string.IsNullOrEmpty(item.FirstName); }"
+               OnRejected="(item) => { Console.WriteLine(item.LastName); }"
+               style="border:5px dashed blue">
+    <EmptyView>
+        <div style="margin:5%;font-size:large;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+            Drop an Item to fill this Fertile Land.
+        </div>
+    </EmptyView>
+    <ItemTemplate>
+        <div style="border:dotted 2px blue;margin-bottom:8px;margin-left:5px;margin-right:5px;margin-top:2px">
+            <h3>@context.FirstName</h3>
+            <h5>@context.LastName</h5>
+            <button @onclick="()=>people.Remove(context)">Delete</button>
+        </div>
+    </ItemTemplate>
+</DragDropList>
+
+<div draggable="true"
+     @ondragstart="()=>DD.SetData(new Person() {FirstName=firstname,LastName=lastname})"
+     style="border:groove 4px;margin-top:20px">
+    <input @bind-value="@firstname" placeholder="First Name" style="margin-bottom:10px" />
+    <br />
+    <input @bind-value="@lastname" placeholder="Last Name" />
+    <br />
+</div>
+
+@code{
+    string firstname;
+    string lastname;
+    List<Person> people = new List<Person>();
+
+    class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+    }
+}

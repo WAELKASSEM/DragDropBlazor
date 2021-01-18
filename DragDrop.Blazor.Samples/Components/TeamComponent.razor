@@ -1,0 +1,23 @@
+﻿@using DragDrop.Blazor
+<div style="margin:5%;border:4px dotted black">
+    <h3>@team.Name</h3>
+    <DragDropList TItem="Player"
+                   Context="player"
+                   Items="team.Players"
+                   AllowsDrag="true"
+                   Verify="(player)=> { return !string.IsNullOrEmpty(player.FirstName) && !string.IsNullOrEmpty(player.LastName); }">
+        <ItemTemplate>
+            <div style="background-color:peru;border:2px dotted black">
+                <br />
+                @player.FirstName, @player.LastName
+                <br />
+                <button @onclick="()=>team.Players.Remove(player)">Delete Player</button>
+            </div>
+        </ItemTemplate>
+    </DragDropList>
+</div>
+@code{
+    [Parameter]
+    public Team team { get; set; }
+
+}

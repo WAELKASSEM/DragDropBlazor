@@ -1,0 +1,109 @@
+﻿@using DragDrop.Blazor
+@inject DragDropService DD
+@page "/polymorphismandcopy"
+<h3>Polymorphism And Copy</h3>
+<DragDropList TItem="Food"
+               AllowsDrag="true"
+               Copy="(item)=> {
+                         if(item is Fruit)
+                         {
+                             var res = (Fruit)item;
+                             return new Fruit() { Color = res.Color, Name = res.Name };
+                         }
+                         if(item is Vegetable)
+                         {
+                             var res = (Vegetable)item;
+                             return new Vegetable() {Name=res.Name,Tasty=res.Tasty};
+                         }
+                         if(item is FastFood)
+                         {
+                             var res = (FastFood)item;
+                             return new FastFood() {Name=res.Name,Calories=res.Calories};
+                         }
+                         return new Food() { Name = item.Name };
+                     }"
+               Items="food"
+               Verify="(item)=>false">
+    <ItemTemplate>
+        <div style="margin:10px;">
+            @context.Name
+            <button @onclick="()=>food.Remove(context)">Delete Me</button>
+        </div>
+    </ItemTemplate>
+</DragDropList>
+
+<DragDropList TItem="Food"
+               AllowsDrag="false"
+               Items="food_revealed">
+    <ItemTemplate>
+        <div style="margin:10px; border:5px solid red">
+            @if (context is Fruit)
+            {
+                var fr = (Fruit)context;
+                <h5>I am a Fruit</h5>
+                <p> My Name is @fr.Name and I am @fr.Color</p>
+            }
+            else if (context is Vegetable)
+            {
+                var veg = (Vegetable)context;
+                <h5>I am a Vegetable</h5>
+                if (veg.Tasty)
+                {
+                    <p>My Name is @veg.Name and I am tasty.</p>
+                }
+                else
+                {
+                    <p>My Name is @veg.Name and I am <b>not</b> tasty.</p>
+
+                }
+            }
+            else if (context is FastFood)
+            {
+                var ff = (FastFood)context;
+                <h5>I am  Fast Food</h5>
+                <p> My Name is @ff.Name and I have @ff.Calories calories</p>
+            }
+            else
+            {
+                <p>I am not recognized</p>
+            }
+        </div>
+    </ItemTemplate>
+</DragDropList>
+
+
+
+@code {
+    List<Food> food = new List<Food>();
+    List<Food> food_revealed = new List<Food>();
+    protected override void OnInitialized()
+    {
+        food.Add(new Fruit()
+        {
+            Color = "Red",
+            Name = "Apple"
+        });
+        food.Add(new Vegetable()
+        {
+            Tasty = true,
+            Name = "Eggplants"
+        });
+        food.Add(new FastFood() { Name = "Chicken Burger", Calories = 10 });
+    }
+    class Food
+    {
+        public string Name { get; set; }
+    }
+    class Fruit : Food
+    {
+        public string Color { get; set; }
+    }
+    class Vegetable : Food
+    {
+        public bool Tasty { get; set; }
+    }
+    class FastFood : Food
+    {
+        public int Calories { get; set; }
+    }
+}

@@ -1,0 +1,8 @@
+﻿.drop-list {
+    margin-left: 10%;
+    margin-right: 10%;
+    min-height: 200px;
+    border-color: blueviolet;
+    border-style: double;
+    border-width: 4px;
+}

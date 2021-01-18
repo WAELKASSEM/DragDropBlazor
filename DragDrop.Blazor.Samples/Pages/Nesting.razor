@@ -1,0 +1,49 @@
+﻿@using DragDrop.Blazor
+@using DragDrop.Blazor.Samples.Components
+@inject DragDropService DD
+@page "/Nesting"
+<h1>Netsing</h1>
+<DragDropList TItem="Team"
+               Items="teams"
+               Context="team"
+               AllowsDrag="true">
+    <ItemTemplate>
+        <TeamComponent team="@team"></TeamComponent>
+    </ItemTemplate>
+</DragDropList>
+<div draggable="true" @ondragstart="()=>DD.SetData(new Team() { Name = teamName })">
+    drag me to create a new team
+    <input placeholder="Team Name" @bind-value="teamName" />
+</div>
+<br />
+<br />
+<div draggable="true" @ondragstart="()=>DD.SetData(new Player() { FirstName = firstName,LastName=lastName })">
+    drag me to create a new player
+    <input placeholder="FirstName" @bind-value="firstName" />
+    <input placeholder="LastName" @bind-value="lastName" />
+</div>
+
+@code {
+    string teamName;
+    string firstName;
+    string lastName;
+    List<Team> teams = new List<Team>();
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        var t1 = new Team();
+        t1.Name = "FC Barcelona";
+        t1.Players.Add(new Player() { FirstName = "Lionel", LastName = "Messi" });
+        t1.Players.Add(new Player() { FirstName = "Xavi", LastName = "Hernandez" });
+        t1.Players.Add(new Player() { FirstName = "Johan", LastName = "Cruyff" });
+        teams.Add(t1);
+        var t2 = new Team();
+        t2.Name = "Real Madrid";
+        t2.Players.Add(new Player() { FirstName = "Cristiano", LastName = "Ronaldo" });
+        t2.Players.Add(new Player() { FirstName = "Raul", LastName = "Gonzalez" });
+        t2.Players.Add(new Player() { FirstName = "Sergio", LastName = "Ramos" });
+        teams.Add(t2);
+
+    }
+}
+
