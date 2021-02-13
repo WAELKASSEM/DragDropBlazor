@@ -41,9 +41,12 @@
     [Parameter]
     public EventCallback<TItem> OnCapacityReachedRejected { get; set; }
     [Parameter]
+    public EventCallback<Tuple<int,int>> OnItemSwap { get; set; }
+    [Parameter]
     public DefaultDrop DefaultDropMode { get; set; } = DefaultDrop.End;
     [Parameter]
     public RenderFragment EmptyView { get; set; }
+
 
     [Parameter]
     public int Capacity { get; set; } = int.MaxValue;
@@ -87,7 +90,9 @@
         var item_list_index = ItemInList(data);
         if (item_list_index != -1)
         {
-            if (Swap != null) Swap(item_list_index, index);
+            if (Swap != null){ Swap(item_list_index, index);
+                await OnItemSwap.InvokeAsync(new Tuple<int, int>(item_list_index, index));
+            }
             DD.Clear();
             return;
         }

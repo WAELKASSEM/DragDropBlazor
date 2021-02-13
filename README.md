@@ -46,6 +46,7 @@ builder.Services.AddSingleton<DragDropService>();
 11. **EmptyView** *(RenderFragment)*: A render fragment to display when the list is empty.
 12. **Verify** *(Func<TItem, bool>)*: A function to add extra verification before dropping an Item. When Verify returns True, the Item will be Added.
 13. **OnRejected** *(Event Callback<TItem>)*: An Event Callback with the Item (that didn't pass the Verify test) as Argument.
+14. **OnItemSwap** (*Event Callback*<Tuple<int,int>>): An Event Callback with a Tuple : Item **a** was swapped with an item **b**. So a has moved from the index **tuple.FirstItem** to **tuple.SecondItem**.
 
 **You can add other html attributes, and of you course you can change the DragDropList Css.**
 
