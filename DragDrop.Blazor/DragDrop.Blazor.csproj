@@ -9,6 +9,8 @@
     <Product>WK.Blazor.DragDrop</Product>
     <Description>A Drag and Drop List Component for Blazor that supports Nesting,Dragging from multiple sources and many more features.</Description>
     <RepositoryUrl>https://github.com/WAELKASSEM/DragDropBlazor</RepositoryUrl>
+    <Version>1.1.0</Version>
+    <PackageTags>drag-drop nesting blazor</PackageTags>
   </PropertyGroup>
 
   
